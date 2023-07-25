@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import Settings from './Component/Settings';
 
 function App() {
-  const [birthday, SetBirthday] = useState('15/11/2001');
+  const [birthday, SetBirthday] = useState('2001/11/15');
   const [nickname, SetNickName] = useState('小猫咪');
 
   return (
