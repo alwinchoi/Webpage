@@ -29,20 +29,21 @@ const MainBody = props => {
     }
 
     const getNumberOfDays = () => {
-
+        const anni = new Date(props.an);
+        return Math.round((current - anni) / (1000 * 3600 * 24));
     }
 
     return (
         <div>
             <div className="heading">
-                <p className="title"> Today: {date} </p>
+                <p className="mainBody-title"> Today: {date} </p>
                 <p>
                     {props.nickname}'s Birthday: {FormatBirthday()} {calculateDiff()}
                 </p>
             </div>
             <div className="image-div">
                 {props.image && <img src={props.image} className="image"></img>}
-                <div className="center">Text</div>
+                <div className="center">{getNumberOfDays()}</div>
             </div>
             <hr></hr>
             <div>

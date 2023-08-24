@@ -7,7 +7,7 @@ import Settings from './Component/Settings';
 function App() {
   const [birthday, SetBirthday] = useState('2001-11-15');
   const [nickname, SetNickName] = useState('小猫咪');
-  const [an, setAn] = useState('2022=10-03');
+  const [an, SetAn] = useState('2022=10-03');
   const [image, SetImage] = useState();
 
   // onMount
@@ -21,7 +21,7 @@ function App() {
     if (birthday != null) { SetBirthday(birthday); }
     if (nickname != null) { SetNickName(nickname); }
     if (img != null) { SetImage(img); }
-    if (an != null) { setAn(an); }
+    if (an != null) { SetAn(an); }
   }, []);
 
   return (
