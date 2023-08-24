@@ -1,0 +1,23 @@
+.image-div {
+    width: 100%;
+    display: block;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.image {
+    width: 450px;
+    height: 450px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    /* height: auto; */
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

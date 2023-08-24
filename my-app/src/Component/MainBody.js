@@ -11,9 +11,8 @@ const MainBody = props => {
 
     //componentDidUpdate, when there is update to props
     useEffect(() => {
-
-
         // clean up if needed
+        console.log(props.image)
         return () => {
 
         };
@@ -24,15 +23,28 @@ const MainBody = props => {
         // return compare.toISOString()
     }
 
+    const FormatBirthday = () => {
+        const date = new Date(birthday)
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    }
+
+    const getNumberOfDays = () => {
+
+    }
+
     return (
         <div>
             <div className="heading">
-                <p className="title"> Today's date: {date}
-                </p>
+                <p className="title"> Today: {date} </p>
                 <p>
-                    Birthday: {birthday} {calculateDiff()}
+                    {props.nickname}'s Birthday: {FormatBirthday()} {calculateDiff()}
                 </p>
             </div>
+            <div className="image-div">
+                {props.image && <img src={props.image} className="image"></img>}
+                <div className="center">Text</div>
+            </div>
+            <hr></hr>
             <div>
                 {props.children}
             </div>
