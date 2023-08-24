@@ -14,15 +14,24 @@ function App() {
   // onMount
   useEffect(() => {
     // load the birthday and nickname saved value
-    const birthday = window.localStorage.getItem("Birthday");
-    const nickname = window.localStorage.getItem("nickname");
-    const img = window.localStorage.getItem("Image");
-    const an = window.localStorage.getItem("Anniversary");
-    console.log(img)
-    if (birthday != null) { SetBirthday(birthday); }
-    if (nickname != null) { SetNickName(nickname); }
-    if (img != null) { SetImage(img); }
-    if (an != null) { SetAn(an); }
+    const localStorageLoad = () => {
+      const localStorageKeys = [
+        { key: 'Birthday', setState: SetBirthday },
+        { key: 'Nickname', setState: SetNickName },
+        { key: 'Anniversary', setState: SetAn },
+        { key: 'Image', setState: SetImage },
+        { key: 'Title', setState: SetTitle }
+      ]
+
+      for (const { key, setState } of localStorageKeys) {
+        const temp = window.localStorage.getItem(key);
+        if (temp != null) {
+          setState(temp);
+        }
+      }
+    };
+
+    localStorageLoad();
   }, []);
 
   return (
