@@ -42,14 +42,16 @@ const MainBody = props => {
                 </p>
             </div>
             <div className="image-div">
+                <div className="top">{props.title}</div>
                 {props.image && <img src={props.image} className="image"></img>}
                 <div className="center">{getNumberOfDays()}</div>
+                <div className="bottom"> {props.an}</div>
             </div>
-            <hr></hr>
+            <hr style={{ marginBlockEnd: "0.35em" }}></hr> {/* marginBlockStart: "0.35em", */}
             <div>
                 {props.children}
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -1,27 +1,49 @@
 import "../css/Settings.css"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Settings = props => {
-    const [date, SetDate] = useState(new Date());
+    // const [date, SetDate] = useState(new Date());
 
     const changeNickName = (name) => {
         props.SetNickName(name)
     }
 
     // update useState after it has been selected
-    const changeBirthday = () => {
-        let date = document.getElementById("datepicker")
-        // validation checking 
-        if (date.value == "") {
-            alert("Please select a valid date")
+    const changeDate = (event) => {
+        // console.log(event.target.id)
+
+        // check if it is birthday or anniversay date
+        if (event.target.id == "birthdayBtn") {
+            let date = document.getElementById("birthdayDatePicker")
+
+            // validation checking 
+            if (date.value == "") {
+                alert("Please select a valid date")
+            }
+            else {
+                props.SetBirthday(date.value)
+                window.localStorage.setItem('Birthday', date.value)
+            }
+            // reset value
+            date.value = ''
         }
-        props.SetBirthday(date.value)
-        window.localStorage.setItem('Birthday', date.value)
-        // reset value
-        date.value = ''
+        else { //anniversary 
+            let date = document.getElementById("anniversaryDatePicker")
+
+            // validation checking 
+            if (date.value == "") {
+                alert("Please select a valid date")
+            }
+            else {
+                props.SetAn(date.value)
+                window.localStorage.setItem('Anniversary', date.value)
+            }
+            // reset value
+            date.value = ''
+        }
     }
 
-    const handleChange = (event) => {
+    const imageChange = (event) => {
         // console.log(e.target.files);
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -38,15 +60,50 @@ const Settings = props => {
         document.getElementById("fileUpload").value = "";
     }
 
+    const updateTitle = () => {
+        const event = document.getElementById("titleInput");
+
+        // check not empty
+        if (event.value) {
+            // update useState
+            props.SetTitle(event.value)
+        }
+
+        event.value = "";
+        localStorage.setItem('Title', event.value);
+    }
+
     return (
         <div>
-            <p className="title"> Settings </p>
-            <input type="date" id="datepicker" />
             {/* onChange={(value) => changeBirthday(value)} */}
-            <br />
-            <button className='button' onClick={() => changeBirthday()}> Change Birthday </button>
-            <input type='file' onChange={handleChange} id="fileUpload"></input>
-        </div >
+            <p className="title"> Settings </p>
+            <div>
+                <p className="Setting-heading"> Dates </p>
+                <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <table>
+                        <tr>
+                            <td>Birthday</td>
+                            <td className="centered-column"><input type="date" className="datepicker" id="birthdayDatePicker" /> <br /></td>
+                            <td><button className='button' id="birthdayBtn" onClick={changeDate}> Change Date </button></td>
+                            <td><button className='button' id="birthdayBtn" onClick={changeDate}> Reset </button></td>
+                        </tr>
+                        <tr>
+                            <td>Anniversary</td>
+                            <td className="centered-column"><input type="date" className="datepicker" id="anniversaryDatePicker" /> <br /></td>
+                            <td><button className='button' id="anniversaryBtn" onClick={changeDate}> Change Date </button></td>
+                            {/* <td><button className='button' id="anniversaryBtn" onClick={changeDate}> Reset </button></td> */}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div className="container">
+                <p className="Setting-heading"> Change Image Title </p> <input type='Text' id="titleInput"></input>
+                <button className='button' onClick={updateTitle}> Update </button>
+            </div>
+            <div className="container">
+                <p className="Setting-heading"> Upload Image </p> <input type='file' onChange={imageChange} id="fileUpload"></input>
+            </div>
+        </div>
     )
 }
 

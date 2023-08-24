@@ -1,6 +1,6 @@
 .image-div {
     width: 100%;
-    display: block;
+    /* display: block; */
     position: relative;
     align-items: center;
     justify-content: center;
@@ -17,13 +17,32 @@
     /* height: auto; */
 }
 
+.top {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-size: 30px;
+    user-select: none;
+}
+
 .center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     user-select: none;
-    font-size: 50px;
+    font-size: 55px;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    user-select: none;
+    /* transform: translate(-50%, 500%); */
 }
 
 .mainBody-title {

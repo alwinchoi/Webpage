@@ -7,8 +7,9 @@ import Settings from './Component/Settings';
 function App() {
   const [birthday, SetBirthday] = useState('2001-11-15');
   const [nickname, SetNickName] = useState('小猫咪');
-  const [an, SetAn] = useState('2022=10-03');
+  const [an, SetAn] = useState('2022-10-03');
   const [image, SetImage] = useState();
+  const [title, SetTitle] = useState('Been Together For');
 
   // onMount
   useEffect(() => {
@@ -27,8 +28,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <MainBody birthday={birthday} nickname={nickname} image={image} an={an}>
-          <Settings SetBirthday={SetBirthday} birthday={birthday} nickname={nickname} SetNickName={SetNickName} SetImage={SetImage} SetAn={SetAn} />
+        <MainBody birthday={birthday} nickname={nickname} image={image} an={an} title={title}>
+          <Settings SetBirthday={SetBirthday} birthday={birthday} nickname={nickname} SetNickName={SetNickName} SetImage={SetImage} SetAn={SetAn} SetTitle={SetTitle} />
         </MainBody>
       </header>
     </div>
