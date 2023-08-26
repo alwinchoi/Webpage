@@ -73,6 +73,19 @@ const Settings = props => {
         localStorage.setItem('Title', event.value);
     }
 
+    const reset = (event) => {
+        const dict = {
+            'birthdayResetBtn': "birthdayDatePicker",
+            'anniversaryResetBtn': 'anniversaryDatePicker'
+        }
+
+        if (event.target.id in dict) {
+            const tag = document.getElementById(dict[event.target.id])
+            tag.value = ""
+        }
+
+    }
+
     return (
         <div>
             {/* onChange={(value) => changeBirthday(value)} */}
@@ -85,13 +98,13 @@ const Settings = props => {
                             <td>Birthday</td>
                             <td className="centered-column"><input type="date" className="datepicker" id="birthdayDatePicker" /> <br /></td>
                             <td><button className='button' id="birthdayBtn" onClick={changeDate}> Change Date </button></td>
-                            <td><button className='button' id="birthdayBtn" onClick={changeDate}> Reset </button></td>
+                            <td><button className='button' id="birthdayResetBtn" onClick={reset}> Reset </button></td>
                         </tr>
                         <tr>
                             <td>Anniversary</td>
                             <td className="centered-column"><input type="date" className="datepicker" id="anniversaryDatePicker" /> <br /></td>
                             <td><button className='button' id="anniversaryBtn" onClick={changeDate}> Change Date </button></td>
-                            {/* <td><button className='button' id="anniversaryBtn" onClick={changeDate}> Reset </button></td> */}
+                            <td><button className='button' id="anniversaryResetBtn" onClick={reset}> Reset </button></td>
                         </tr>
                     </table>
                 </div>

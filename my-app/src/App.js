@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import MainBody from './Component/MainBody';
 import React, { useState, useEffect } from "react";
