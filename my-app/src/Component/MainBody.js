@@ -42,17 +42,24 @@ const MainBody = props => {
 
     const setSlider = () => {
         const slider = document.getElementById('mySlider')
-        console.log(slider.value)
         SetSliderVal(slider.value)
         // slider.value = toString(event.target.value)
     }
 
-    const getButtonStyle = () => {
-        if (sliderVal <= 50) {
+    const getLabelClass = (id) => {
+        // console.log("here")
+        if (sliderVal < 100) {
             // left slide
-            return "buttonBlack"
+            return (id === 0) ? "slider-label-selected" : "slider-label";
         }
-        return "buttonWhite"
+        return (id === 1) ? "slider-label-selected" : "slider-label";
+    }
+
+    const returnComponent = () => {
+        if (sliderVal < 100) {
+            return <CountDays title={props.title} image={props.image} an={props.an} />
+        }
+        return <Hug hug={props.hug} SetHug={props.SetHug} />
     }
 
     return (
@@ -63,14 +70,13 @@ const MainBody = props => {
                     {props.nickname}'s Birthday: {FormatBirthday()} {calculateDiff()}
                 </p>
             </div>
-            <CountDays title={props.title} image={props.image} an={props.an} />
-            <Hug hug={props.hug} SetHug={props.SetHug} />
+            {returnComponent()}
             {/* slider */}
-            <div>
-                <input type="range" min="0" max="100" value={sliderVal} id="mySlider" name="mySlider" step="100" onInput={setSlider}></input>
-                <button class={getButtonStyle()}> Test </button>
-                <label>test</label>
-                {/* value="50" */}
+            <div className="sliderContainer">
+                <div className="slider-label-container">
+                    <label class={getLabelClass(0)}>Days Matter</label><label class={getLabelClass(1)}> Hugs</label>
+                </div>
+                <input type="range" min="0" max="100" value={sliderVal} id="mySlider" className="slider" step="100" onInput={setSlider}></input>
                 {/* onInput={setSlider}  */}
             </div>
             <hr style={{ marginBlockEnd: "0.35em" }}></hr> {/* marginBlockStart: "0.35em", */}
