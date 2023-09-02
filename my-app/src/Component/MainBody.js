@@ -1,6 +1,10 @@
 import "../css/MainBody.css"
+import CountDays from "./CountDays";
+import Hug from "./Hug";
 
 import React, { useState, useEffect } from "react";
+
+
 
 const MainBody = props => {
     const [sliderVal, SetSliderVal] = useState(0)
@@ -59,12 +63,8 @@ const MainBody = props => {
                     {props.nickname}'s Birthday: {FormatBirthday()} {calculateDiff()}
                 </p>
             </div>
-            <div className="image-div">
-                <div className="top">{props.title}</div>
-                {props.image && <img src={props.image} className="image"></img>}
-                <div className="center">{getNumberOfDays()}</div>
-                <div className="bottom"> {props.an}</div>
-            </div>
+            <CountDays title={props.title} image={props.image} an={props.an} />
+            <Hug hug={props.hug} SetHug={props.SetHug} />
             {/* slider */}
             <div>
                 <input type="range" min="0" max="100" value={sliderVal} id="mySlider" name="mySlider" step="100" onInput={setSlider}></input>
