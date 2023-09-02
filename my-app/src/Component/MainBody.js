@@ -3,6 +3,7 @@ import "../css/MainBody.css"
 import React, { useState, useEffect } from "react";
 
 const MainBody = props => {
+    const [sliderVal, SetSliderVal] = useState(0)
     const current = new Date()
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
     const birthday = props.birthday
@@ -12,11 +13,13 @@ const MainBody = props => {
     //componentDidUpdate, when there is update to props
     useEffect(() => {
         // clean up if needed
-        console.log(props.image)
+        // console.log(props.image)
         return () => {
 
         };
     }, [props])
+
+    // read jsonData
 
     const calculateDiff = () => {
         // const compare = current - birthday;
@@ -33,6 +36,21 @@ const MainBody = props => {
         return Math.round((current - anni) / (1000 * 3600 * 24));
     }
 
+    const setSlider = () => {
+        const slider = document.getElementById('mySlider')
+        console.log(slider.value)
+        SetSliderVal(slider.value)
+        // slider.value = toString(event.target.value)
+    }
+
+    const getButtonStyle = () => {
+        if (sliderVal <= 50) {
+            // left slide
+            return "buttonBlack"
+        }
+        return "buttonWhite"
+    }
+
     return (
         <div>
             <div className="heading">
@@ -47,11 +65,19 @@ const MainBody = props => {
                 <div className="center">{getNumberOfDays()}</div>
                 <div className="bottom"> {props.an}</div>
             </div>
+            {/* slider */}
+            <div>
+                <input type="range" min="0" max="100" value={sliderVal} id="mySlider" name="mySlider" step="100" onInput={setSlider}></input>
+                <button class={getButtonStyle()}> Test </button>
+                <label>test</label>
+                {/* value="50" */}
+                {/* onInput={setSlider}  */}
+            </div>
             <hr style={{ marginBlockEnd: "0.35em" }}></hr> {/* marginBlockStart: "0.35em", */}
             <div>
                 {props.children}
             </div>
-        </div >
+        </div>
     )
 }
 

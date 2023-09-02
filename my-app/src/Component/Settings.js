@@ -8,6 +8,8 @@ const Settings = props => {
         props.SetNickName(name)
     }
 
+    // update jsonData by creating dictionary based on form
+
     // update useState after it has been selected
     const changeDate = (event) => {
         // console.log(event.target.id)
@@ -90,6 +92,13 @@ const Settings = props => {
         <div>
             {/* onChange={(value) => changeBirthday(value)} */}
             <p className="title"> Settings </p>
+            {/* <div>
+                <form>
+                    <label>Birthday</label>
+                    <input type="date"></input><br></br>
+                    <button>Reset</button>  <input type="submit"></input>
+                </form>
+            </div> */}
             <div>
                 <p className="Setting-heading"> Dates </p>
                 <div style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>

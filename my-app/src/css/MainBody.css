@@ -50,3 +50,11 @@
     margin: 0px;
     text-decoration: none;
 }
+
+.buttonBlack {
+    background-color: black;
+}
+
+.buttonWhite {
+    background-color: white;
+}
