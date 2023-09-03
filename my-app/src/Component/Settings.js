@@ -25,6 +25,7 @@ const Settings = props => {
             else {
                 props.SetBirthday(date.value)
                 window.localStorage.setItem('Birthday', date.value)
+                props.SetUpdate(true)
             }
             // reset value
             date.value = ''
@@ -39,6 +40,7 @@ const Settings = props => {
             else {
                 props.SetAn(date.value)
                 window.localStorage.setItem('Anniversary', date.value)
+                props.SetUpdate(true)
             }
             // reset value
             date.value = ''
@@ -60,6 +62,7 @@ const Settings = props => {
 
         reader.readAsDataURL(file);
         document.getElementById("fileUpload").value = "";
+        props.SetUpdate(true)
     }
 
     const updateTitle = () => {
@@ -69,10 +72,12 @@ const Settings = props => {
         if (event.value) {
             // update useState
             props.SetTitle(event.value)
+            props.SetUpdate(true)
         }
 
         event.value = "";
         localStorage.setItem('Title', event.value);
+
     }
 
     const reset = (event) => {

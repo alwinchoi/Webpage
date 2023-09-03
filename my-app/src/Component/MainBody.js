@@ -23,6 +23,10 @@ const MainBody = props => {
         };
     }, [props])
 
+    useEffect(() => {
+        props.SetUpdate(true)
+    }, [props.hug])
+
     // read jsonData
 
     const calculateDiff = () => {
